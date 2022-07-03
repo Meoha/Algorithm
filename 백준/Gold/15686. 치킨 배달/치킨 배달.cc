@@ -66,21 +66,16 @@ void pick_chicken(int idx, int cnt) {
 
 		return;
 	}
-	else {
 
-		for (int i = idx; i < chicken.size(); i++) {
+	if (chicken.size() <= idx) return;
 
-			//i번째 치킨 집을 폐업할 때
-			chicken[i].pick = false;
-			pick_chicken(i + 1, cnt + 1);
+	//i번째 치킨 집을 폐업할 때
+	chicken[idx].pick = false;
+	pick_chicken(idx + 1, cnt + 1);
 
-			//i번째 치킨 집을 폐업하지 않을 때
-			chicken[i].pick = true;
-			pick_chicken(i + 1, cnt);
-
-		}
-
-	}
+	//i번째 치킨 집을 폐업하지 않을 때
+	chicken[idx].pick = true;
+	pick_chicken(idx + 1, cnt);
 
 }
 
