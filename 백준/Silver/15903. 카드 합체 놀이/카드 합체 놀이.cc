@@ -1,5 +1,5 @@
 #include <iostream>
-#include <algorithm>
+#include <queue>
 
 using namespace std;
 
@@ -14,28 +14,34 @@ int main() {
 
 	cin >> N >> M;
 
-	long long* card = (long long*)malloc(sizeof(long long) * N); //카드의 상태 정보
-
+	priority_queue<long long, vector<long long>, greater<long long>> pq; //카드의 상태 정보 우선 순위 큐
+	
 	for (int n = 0; n < N; n++) {
 
-		cin >> card[n];
+		long long temp;
+
+		cin >> temp;
+
+		pq.push(temp);
 
 	}
 
+	//카드 합체	
 	for (int m = 0; m < M; m++) {
 
-		//카드 정렬
-		sort(card, card + N);
-
-		//카드 합체
-		card[0] = card[0] + card[1];
-		card[1] = card[0];
+		long long num = pq.top();
+		pq.pop();
+		num += pq.top();
+		pq.pop();
+		pq.push(num);
+		pq.push(num);
 
 	}
 
-	for (int n = 0; n < N; n++) {
+	while (!pq.empty()) {
 
-		ans += card[n];
+		ans += pq.top();
+		pq.pop();
 
 	}
 
