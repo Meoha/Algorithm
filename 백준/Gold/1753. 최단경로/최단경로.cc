@@ -14,7 +14,7 @@ void dijkstra(int start) {
 
 	dist[start] = 0;
 	priority_queue<pair<int, int>> pq;
-	pq.push(make_pair(0, start ));
+	pq.push({ 0, start });
 
 	while (!pq.empty()) {
 
@@ -36,7 +36,7 @@ void dijkstra(int start) {
 			if (dist[next] > next_dist) {
 
 				dist[next] = next_dist;
-				pq.push(make_pair( -next_dist, next ));
+				pq.push({ -next_dist, next });
 
 			}
 
@@ -72,7 +72,7 @@ int main() {
 
 		cin >> u >> v >> w;
 
-		graph[u].push_back(make_pair( w, v ));
+		graph[u].push_back({ w, v });
 	}
 
 	dijkstra(K);
